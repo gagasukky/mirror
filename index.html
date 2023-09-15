@@ -2,18 +2,23 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mirror</title>
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ウェブカメラ鏡</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
-        #mirror {
-            width: 100%;
-            height: 100vh;
-            transform: scaleX(-1);
-        }
         body {
             margin: 0;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #mirror {
+            width: 100%;
+            max-width: 100vw;
+            height: auto;
+            transform: scaleX(-1);
         }
     </style>
 </head>
@@ -23,7 +28,7 @@
     <script>
         const video = document.getElementById('mirror');
 
-        navigator.mediaDevices.getUserMedia({ video: true })
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
             .then(stream => {
                 video.srcObject = stream;
             })
@@ -33,3 +38,4 @@
     </script>
 </body>
 </html>
+
