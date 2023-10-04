@@ -1,12 +1,13 @@
 
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>WebCamMirror</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>WebCamMirror</title>
+<link href="favicon.ico" rel="icon" type="image/x-icon"/>
+<style>
         body {
             margin: 0;
             overflow: hidden;
@@ -29,14 +30,13 @@
     </style>
 </head>
 <body>
-    <video id="mirror" autoplay></video>
-    <select id="resolutionSelector">
-        <option value="max">最高解像度</option>
-        <option value="hd">HD画質</option>
-        <option value="sd">SD画質</option>
-    </select>
-
-    <script>
+<button id="flipButton" style="position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1000; padding: 10px 15px; background-color: #333; color: #fff; border: none; border-radius: 5px; cursor: pointer;">左右反転</button><video autoplay="" id="mirror"></video>
+<select id="resolutionSelector">
+<option value="max">最高解像度</option>
+<option value="hd">HD画質</option>
+<option value="sd">SD画質</option>
+</select>
+<script>
         const video = document.getElementById('mirror');
         const resolutionSelector = document.getElementById('resolutionSelector');
 
@@ -72,6 +72,13 @@
         });
 
         startCamera('max');
-    </script>
+    </script><script>
+    const flipButton = document.getElementById('flipButton');
+    let flipped = true;  // Default is mirrored
+    flipButton.addEventListener('click', () => {
+        flipped = !flipped;
+        video.style.transform = flipped ? 'scaleX(-1)' : 'scaleX(1)';
+    });
+</script>
 </body>
 </html>
